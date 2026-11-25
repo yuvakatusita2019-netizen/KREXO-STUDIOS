@@ -1,0 +1,1357 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080b08">
+<title>KREXO | Creative Digital Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--bg:#080b08;
+--surface:#111711;
+--surface2:#182018;
+--green:#b5ff39;
+--green2:#70e500;
+--white:#f5f7f3;
+--muted:#92998e;
+--red:#ff6464;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--white);font-family:Inter,sans-serif;line-height:1.6}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.container{width:min(1120px,92%);margin:auto}
+.hidden{display:none!important}
+.page{display:none;padding:45px 0 80px}
+.page.active{display:block}
+h1,h2,h3{line-height:1.25}
+h1{font-size:clamp(36px,6vw,68px);font-weight:900}
+h2{font-size:clamp(26px,4vw,40px);margin-bottom:20px}
+h3{font-size:20px}
+p{margin:8px 0}
+a{color:inherit;text-decoration:none}
+.muted{color:var(--muted)}
+.green{color:var(--green)}
+.small{font-size:13px;color:var(--muted)}
+.eyebrow{
+text-transform:uppercase;letter-spacing:3px;
+font-size:12px;color:var(--green);font-weight:800;margin-bottom:14px
+}
+.btn{
+border:1px solid transparent;border-radius:12px;padding:12px 18px;
+font-weight:700;transition:.2s;display:inline-flex;
+align-items:center;justify-content:center;gap:8px
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{color:#080b08;background:linear-gradient(120deg,#c5ff54,#70e500)}
+.btn-secondary{background:var(--surface2);border-color:#293329;color:white}
+header{
+position:sticky;top:0;z-index:50;background:rgba(8,11,8,.94);
+backdrop-filter:blur(16px);border-bottom:1px solid #202820
+}
+.navbar{display:flex;align-items:center;gap:22px;padding:15px 0}
+.brand{font-weight:900;font-size:24px;white-space:nowrap}
+.brand-x{color:var(--green)}
+.nav{
+display:flex;gap:20px;overflow-x:auto;white-space:nowrap;
+flex:1;scrollbar-width:none
+}
+.nav::-webkit-scrollbar{display:none}
+.nav button{
+color:var(--muted);border:0;border-bottom:2px solid transparent;
+background:none;padding:8px 2px;font-size:13px;font-weight:700
+}
+.nav button.active{color:var(--green);border-bottom-color:var(--green)}
+.hero{
+padding:65px 0 50px;display:grid;
+grid-template-columns:1.3fr .7fr;gap:40px;align-items:center
+}
+.hero h1 span{color:var(--green)}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
+.hero-box{
+background:linear-gradient(145deg,#182218,#0d120d);
+border:1px solid #293329;border-radius:28px;padding:32px
+}
+.hero-box .big{font-size:64px;font-weight:900;letter-spacing:-5px;color:var(--green)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:25px}
+.stat{background:var(--surface);padding:15px;border-radius:14px;border:1px solid #222b22}
+.stat strong{display:block;color:var(--green)}
+.section-head{margin-bottom:25px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{
+background:var(--surface);border:1px solid #232c23;
+border-radius:18px;padding:22px;transition:.2s
+}
+.card:hover{border-color:#526c35;transform:translateY(-3px)}
+.card p{color:var(--muted)}
+.card-icon{font-size:27px;margin-bottom:15px}
+.tag{
+display:inline-block;padding:5px 10px;border-radius:30px;
+background:#202a20;color:var(--green);font-size:11px;font-weight:800;margin-bottom:12px
+}
+.price{color:var(--green);font-size:18px;font-weight:800;margin-top:10px}
+.catalog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.catalog-card{overflow:hidden;padding:0}
+.catalog-media{
+width:100%;height:220px;object-fit:cover;
+background:#202820;display:block
+}
+.catalog-body{padding:20px}
+.catalog-body .price{font-size:16px}
+.catalog-buttons{display:flex;gap:8px;margin-top:15px}
+.catalog-buttons .btn{flex:1;font-size:12px;padding:10px}
+.filter-row{
+display:flex;gap:10px;overflow-x:auto;margin:20px 0;scrollbar-width:none
+}
+.filter{
+border:1px solid #2a342a;background:var(--surface);
+color:white;padding:9px 15px;border-radius:30px;white-space:nowrap
+}
+.filter.active{background:var(--green);color:black;border-color:var(--green)}
+.form-box{
+background:var(--surface);border:1px solid #283128;
+border-radius:20px;padding:28px
+}
+.field{margin-bottom:18px}
+.field label{display:block;font-weight:700;font-size:14px;margin-bottom:7px}
+.field input,.field textarea,.field select{
+width:100%;background:#0a0e0a;color:white;
+border:1px solid #303a30;border-radius:12px;padding:13px;outline:none
+}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--green)}
+.field textarea{resize:vertical;min-height:120px}
+.field select option{background:#111711}
+.field .error-text{display:none;color:var(--red);font-size:12px;margin-top:6px}
+.field.invalid input,.field.invalid textarea,.field.invalid select{
+border-color:var(--red);box-shadow:0 0 0 1px rgba(255,100,100,.15)
+}
+.field.invalid .error-text{display:block}
+.service-select-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.service-choice{
+border:1px solid #303a30;background:#0a0e0a;border-radius:12px;
+padding:14px;cursor:pointer;display:flex;gap:10px;align-items:flex-start
+}
+.service-choice:hover{border-color:var(--green)}
+.service-choice.selected{border-color:var(--green);background:#172117}
+.service-choice input{accent-color:var(--green);margin-top:4px}
+.service-choice strong{font-size:13px;display:block}
+.service-choice small{color:var(--muted)}
+#serviceWarning{color:var(--red);font-size:13px;margin-top:10px;display:none}
+.summary{
+background:#0b110b;border:1px solid #344334;border-radius:18px;
+padding:25px;margin-top:25px
+}
+.summary-row{padding:12px 0;border-bottom:1px solid #222b22}
+.summary-row:last-child{border-bottom:none}
+.summary-label{color:var(--muted);font-size:12px}
+.summary-value{white-space:pre-wrap;word-break:break-word}
+.summary-services{display:flex;flex-direction:column;gap:8px}
+.summary-service{border:1px solid #293329;background:var(--surface);padding:12px;border-radius:12px}
+.summary-service strong{display:block}
+.summary-service small{color:var(--green)}
+.summary-buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.notice{
+border:1px solid #394739;background:#121912;
+border-radius:14px;padding:15px;font-size:13px;margin:15px 0
+}
+
+/* CREW CARD */
+
+.crew-grid{display:grid;grid-template-columns:1fr;gap:24px}
+.crew-card{
+position:relative;overflow:hidden;
+background:linear-gradient(145deg,#111711 0%,#0b100b 100%);
+border:1px solid rgba(181,255,57,.75);
+border-radius:32px;padding:42px;min-height:420px;transition:.3s
+}
+.crew-card:hover{
+border-color:#b5ff39;box-shadow:0 0 25px rgba(181,255,57,.08);
+transform:translateY(-3px)
+}
+.crew-card::before{
+content:"K";position:absolute;right:-30px;bottom:-90px;
+font-size:300px;font-weight:900;line-height:1;
+color:rgba(181,255,57,.025);pointer-events:none
+}
+.crew-top{
+display:flex;align-items:center;justify-content:space-between;
+position:relative;z-index:2
+}
+.crew-avatar{
+width:95px;height:95px;border-radius:50%;
+border:1px solid #b5ff39;background:rgba(181,255,57,.04);
+color:#b5ff39;display:flex;align-items:center;justify-content:center;
+font-size:36px;font-weight:800;margin:0
+}
+.crew-number{color:#8c9488;font-size:13px;font-weight:800;letter-spacing:1px}
+.crew-brand{
+position:relative;z-index:2;margin-top:40px;
+font-size:13px;font-weight:900;letter-spacing:4px;color:#b5ff39
+}
+.crew-name{
+position:relative;z-index:2;font-size:38px;font-weight:800;
+margin:5px 0;letter-spacing:-1px
+}
+.crew-position{
+position:relative;z-index:2;color:#b5ff39;
+font-weight:800;letter-spacing:1px;font-size:16px
+}
+.crew-description{position:relative;z-index:2;color:#92998e;font-size:16px;margin-top:20px}
+.crew-divider{height:1px;background:#303830;margin:30px 0 20px}
+.crew-footer{
+position:relative;z-index:2;display:flex;align-items:center;
+justify-content:space-between;gap:15px;flex-wrap:wrap
+}
+.crew-skills{color:#92998e;font-size:13px;letter-spacing:.3px}
+.crew-code{color:#92998e;font-size:13px;white-space:nowrap}
+
+/* ABOUT */
+
+.about-block{
+background:var(--surface);border:1px solid #273127;
+border-radius:20px;padding:25px;margin:20px 0
+}
+.about-block h3{margin-bottom:15px;color:var(--green)}
+.about-block ul{padding-left:20px;color:var(--muted)}
+.about-block li{margin:6px 0}
+.acronym-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.acronym{
+text-align:center;background:#0b110b;border:1px solid #293329;
+border-radius:15px;padding:18px 8px
+}
+.acronym strong{display:block;font-size:32px;color:var(--green)}
+.acronym span{font-size:12px}
+.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.division{background:#0b110b;border:1px solid #293329;border-radius:16px;padding:20px}
+.division h4{color:var(--green);margin-bottom:10px}
+.division ul{padding-left:18px;color:var(--muted);font-size:13px}
+
+/* MODAL */
+
+.modal{
+position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.85);
+display:none;align-items:center;justify-content:center;padding:20px
+}
+.modal.open{display:flex}
+.modal-content{
+background:var(--surface);border:1px solid #334033;border-radius:20px;
+width:min(850px,100%);max-height:90vh;overflow:auto;padding:20px
+}
+.modal-top{display:flex;justify-content:space-between;gap:15px;align-items:center;margin-bottom:15px}
+.modal-close{background:#202820;border:1px solid #334033;color:white;border-radius:10px;padding:8px 14px}
+#previewMedia img,#previewMedia video{
+width:100%;max-height:70vh;object-fit:contain;border-radius:12px;background:#050805
+}
+footer{border-top:1px solid #202820;padding:30px 0;text-align:center;color:var(--muted)}
+
+@media(max-width:800px){
+.hero{grid-template-columns:1fr}
+.grid,.catalog-grid{grid-template-columns:repeat(2,1fr)}
+.about-grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+.navbar{gap:12px;align-items:flex-start;flex-direction:column}
+.nav{width:100%;gap:16px}
+.hero{padding:40px 0}
+.grid,.catalog-grid{grid-template-columns:1fr}
+.service-select-grid{grid-template-columns:1fr}
+.form-box{padding:18px}
+.stats{grid-template-columns:1fr}
+.acronym-grid{grid-template-columns:repeat(5,1fr)}
+.acronym{padding:12px 4px}
+.acronym strong{font-size:24px}
+.acronym span{font-size:10px}
+.catalog-media{height:200px}
+.crew-card{padding:28px 24px;border-radius:28px;min-height:390px}
+.crew-avatar{width:78px;height:78px;font-size:30px}
+.crew-brand{margin-top:35px;letter-spacing:3px;font-size:11px}
+.crew-name{font-size:30px}
+.crew-position{font-size:14px}
+.crew-description{font-size:14px}
+.crew-footer{gap:10px}
+.crew-skills,.crew-code{font-size:11px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container navbar">
+<a href="#" class="brand" onclick="showPage('home')">KRE<span class="brand-x">X</span>O</a>
+<nav class="nav">
+<button class="active" onclick="showPage('home')">Home</button>
+<button onclick="showPage('services')">Services</button>
+<button onclick="showPage('catalog')">Catalog</button>
+<button onclick="showPage('order')">Order</button>
+<button onclick="showPage('crew')">Crew</button>
+<button onclick="showPage('about')">About Us</button>
+</nav>
+</div>
+</header>
+
+<main>
+
+<!-- HOME -->
+<section id="home" class="page active">
+<div class="container">
+
+<div class="hero">
+<div>
+<div class="eyebrow">Global Digital Studio</div>
+<h1>Ideas into <span>Visuals.</span><br>Creativity into Reality.</h1>
+<p class="muted" style="max-width:600px;margin-top:20px">
+KREXO transforms ideas into digital experiences through creativity,
+technology and innovative solutions.
+</p>
+<div class="hero-buttons">
+<button class="btn btn-primary" onclick="showPage('order')">Start a Project ↗</button>
+<button class="btn btn-secondary" onclick="showPage('catalog')">Explore Catalog</button>
+</div>
+</div>
+
+<div class="hero-box">
+<div class="eyebrow">KREXO</div>
+<div class="big">K/X/O</div>
+<h3>Design. Video. Programming.</h3>
+<p class="muted">Creativity meets engineering.</p>
+<div class="stats">
+<div class="stat"><strong>CREATIVE</strong><span class="small">Visuals</span></div>
+<div class="stat"><strong>TECH</strong><span class="small">Engineering</span></div>
+<div class="stat"><strong>BUSINESS</strong><span class="small">Growth</span></div>
+</div>
+</div>
+</div>
+
+<div class="section-head">
+<div class="eyebrow">Our Expertise</div>
+<h2>What We <span class="green">Create</span></h2>
+</div>
+
+<div class="grid">
+<div class="card">
+<div class="card-icon">✦</div>
+<h3>Graphic Design</h3>
+<p>Visual communication, branding, posters and digital design.</p>
+<button class="btn btn-secondary" onclick="showPage('services')">Discover</button>
+</div>
+<div class="card">
+<div class="card-icon">▶</div>
+<h3>Video Editing</h3>
+<p>Editing, storytelling, motion and visual effects.</p>
+<button class="btn btn-secondary" onclick="showPage('services')">Discover</button>
+</div>
+<div class="card">
+<div class="card-icon">⌘</div>
+<h3>Programming</h3>
+<p>Software, applications and digital engineering.</p>
+<button class="btn btn-secondary" onclick="showPage('services')">Discover</button>
+</div>
+</div>
+
+<div class="about-block" style="text-align:center">
+<div class="eyebrow">Our Philosophy</div>
+<h2>Kreativitas. Rekayasa.<br>Explorasi. Xperience. Originalitas.</h2>
+<p class="green">Innovate Without Limits.</p>
+<button class="btn btn-primary" onclick="showPage('about')">Discover KREXO</button>
+</div>
+
+</div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="page">
+<div class="container">
+<div class="section-head">
+<div class="eyebrow">Our Capabilities</div>
+<h2>Our <span class="green">Services</span></h2>
+<p class="muted">Digital solutions built around ideas, creativity and technology.</p>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<div class="card-icon">⌘</div><span class="tag">Programming</span>
+<h3>Everyday Programs</h3>
+<p>Program and software solutions for everyday needs.</p>
+<div class="price">Rp150K+</div>
+<button class="btn btn-primary" onclick="orderService('daily')">Order</button>
+</div>
+
+<div class="card">
+<div class="card-icon">⌘</div><span class="tag">Programming</span>
+<h3>Business Programs</h3>
+<p>Software solutions designed for business workflows.</p>
+<div class="price">Rp300K+</div>
+<button class="btn btn-primary" onclick="orderService('business')">Order</button>
+</div>
+
+<div class="card">
+<div class="card-icon">◈</div><span class="tag">Programming</span>
+<h3>Cyber Security</h3>
+<p>Authorized security assessment and defensive security work.</p>
+<div class="price">Rp180K–10Jt</div>
+<button class="btn btn-primary" onclick="orderService('security')">Order</button>
+</div>
+
+<div class="card">
+<div class="card-icon">▶</div><span class="tag">Video Editing</span>
+<h3>Meme Editing</h3>
+<p>Creative, entertaining and meme-style video editing.</p>
+<div class="price">Rp10K–30K / min</div>
+<button class="btn btn-primary" onclick="orderService('meme')">Order</button>
+</div>
+
+<div class="card">
+<div class="card-icon">▶</div><span class="tag">Video Editing</span>
+<h3>VFX Editing</h3>
+<p>Visual effects, compositing and advanced video editing.</p>
+<div class="price">Rp350K+ / min</div>
+<button class="btn btn-primary" onclick="orderService('vfx')">Order</button>
+</div>
+
+<div class="card">
+<div class="card-icon">✦</div><span class="tag">Graphic Design</span>
+<h3>Infographic</h3>
+<p>Information presented through clear visual communication.</p>
+<div class="price">Rp10K–50K</div>
+<button class="btn btn-primary" onclick="orderService('infographic')">Order</button>
+</div>
+
+<div class="card">
+<div class="card-icon">✦</div><span class="tag">Graphic Design</span>
+<h3>Poster Design</h3>
+<p>Posters for events, promotions and visual communication.</p>
+<div class="price">Rp10K–50K</div>
+<button class="btn btn-primary" onclick="orderService('poster')">Order</button>
+</div>
+
+<div class="card">
+<div class="card-icon">✦</div><span class="tag">Graphic Design</span>
+<h3>PPT Design</h3>
+<p>Presentation design with visual clarity and structure.</p>
+<div class="price">Rp10K–30K / 2 slides</div>
+<button class="btn btn-primary" onclick="orderService('ppt')">Order</button>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- CATALOG -->
+<section id="catalog" class="page">
+<div class="container">
+<div class="section-head">
+<div class="eyebrow">Portfolio & Pricing</div>
+<h2>Service <span class="green">Catalog</span></h2>
+<p class="muted">Explore our services, preview media and start your project.</p>
+</div>
+
+<div class="filter-row">
+<button class="filter active" onclick="filterCatalog('all',this)">All</button>
+<button class="filter" onclick="filterCatalog('graphic',this)">Graphic Design</button>
+<button class="filter" onclick="filterCatalog('video',this)">Video Editing</button>
+<button class="filter" onclick="filterCatalog('programming',this)">Programming</button>
+</div>
+
+<div id="catalogGrid" class="catalog-grid"></div>
+</div>
+</section>
+
+<!-- ORDER -->
+<section id="order" class="page">
+<div class="container" style="max-width:850px">
+<div class="section-head">
+<div class="eyebrow">Let's Work Together</div>
+<h2>Start Your <span class="green">Project</span></h2>
+<p class="muted">Fill in the information below to submit your order request.</p>
+</div>
+
+<div id="orderFormBox" class="form-box">
+<form id="orderForm" novalidate>
+
+<div class="field" id="field-name">
+<label for="customerName">Customer Name *</label>
+<input id="customerName" placeholder="Masukkan nama Anda">
+<div class="error-text">Nama wajib diisi.</div>
+</div>
+
+<div class="field" id="field-phone">
+<label for="customerPhone">WhatsApp Number *</label>
+<input id="customerPhone" type="tel" placeholder="Contoh: 628123456789">
+<div class="error-text">Nomor WhatsApp wajib diisi.</div>
+</div>
+
+<div class="field" id="field-services">
+<label>Select Services * (You may select multiple)</label>
+<div class="service-select-grid" id="orderServices"></div>
+<div id="serviceWarning">Pilih minimal satu layanan.</div>
+</div>
+
+<div class="field" id="field-details">
+<label for="orderDetails">Order Details *</label>
+<textarea id="orderDetails" placeholder="Jelaskan kebutuhan, konsep, spesifikasi atau hal yang perlu kami ketahui."></textarea>
+<div class="error-text">Detail pesanan wajib diisi.</div>
+</div>
+
+<div class="field">
+<label for="targetDate">Target Date / Deadline (Optional)</label>
+<input type="date" id="targetDate">
+</div>
+
+<div class="field">
+<label for="referenceLink">Reference Link(s) (Optional)</label>
+<textarea id="referenceLink" placeholder="Link Google Drive, referensi desain, video, atau website."></textarea>
+</div>
+
+<div class="notice">
+Final pricing and project details will be confirmed by the relevant KREXO team before work begins. Please provide reference links instead of uploading files here.
+</div>
+
+<button type="button" class="btn btn-primary" style="width:100%" onclick="reviewOrder()">Review Order →</button>
+</form>
+</div>
+
+<div id="orderSummary" class="summary hidden">
+<div class="eyebrow">Order Summary</div>
+<h2 style="font-size:26px">Review Your <span class="green">Request</span></h2>
+
+<div class="summary-row">
+<div class="summary-label">Customer</div>
+<div id="sumName" class="summary-value"></div>
+</div>
+<div class="summary-row">
+<div class="summary-label">WhatsApp</div>
+<div id="sumPhone" class="summary-value"></div>
+</div>
+<div class="summary-row">
+<div class="summary-label">Services</div>
+<div id="sumServices" class="summary-services"></div>
+</div>
+<div class="summary-row">
+<div class="summary-label">Order Details</div>
+<div id="sumDetails" class="summary-value"></div>
+</div>
+<div class="summary-row">
+<div class="summary-label">Target Date</div>
+<div id="sumDate" class="summary-value"></div>
+</div>
+<div class="summary-row">
+<div class="summary-label">References</div>
+<div id="sumReference" class="summary-value"></div>
+</div>
+
+<div class="notice">
+Review your details before sending. The relevant KREXO admin will contact you to confirm the project.
+</div>
+
+<div class="summary-buttons">
+<button class="btn btn-secondary" onclick="editOrder()">← Edit Order</button>
+<button class="btn btn-primary" onclick="confirmOrder()">Confirm & Send to WhatsApp ↗</button>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CREW -->
+<section id="crew" class="page">
+<div class="container">
+
+<div class="section-head">
+<div class="eyebrow">The People Behind KREXO</div>
+<h2>Meet Our <span class="green">Crew.</span></h2>
+<p class="muted">The creative minds behind every KREXO project.</p>
+</div>
+
+<div id="crewGrid" class="crew-grid"></div>
+
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="page">
+<div class="container">
+
+<div class="section-head">
+<div class="eyebrow">Company Profile</div>
+<h2>About <span class="green">KREXO</span></h2>
+<p class="muted">Master Blueprint & Company Profile — Version 1.0 / 2026</p>
+</div>
+
+<div class="about-block">
+<div class="eyebrow">01 — Company Identity</div>
+<h2>KREXO</h2>
+<p><strong>Organization Type:</strong> Global Digital Studio</p>
+<p><strong>Core Identity:</strong> Digital Creative, Engineering & Business</p>
+<p><strong>Working Languages:</strong> Indonesian, English, Chinese</p>
+<p><strong>Proposed Tagline:</strong> <span class="green">Innovate Without Limits.</span></p>
+
+<div class="acronym-grid" style="margin-top:25px">
+<div class="acronym"><strong>K</strong><span>Kreativitas</span></div>
+<div class="acronym"><strong>R</strong><span>Rekayasa</span></div>
+<div class="acronym"><strong>E</strong><span>Explorasi</span></div>
+<div class="acronym"><strong>X</strong><span>Xperience</span></div>
+<div class="acronym"><strong>O</strong><span>Originalitas</span></div>
+</div>
+</div>
+
+<div class="about-block">
+<div class="eyebrow">02 — Vision</div>
+<h3>Our Vision</h3>
+<p>“To become a globally recognized digital studio that develops creative solutions, advanced technology, and innovative digital products.”</p>
+</div>
+
+<div class="about-block">
+<div class="eyebrow">03 — Mission</div>
+<h3>Our Mission</h3>
+<ul>
+<li>Deliver high-quality digital services.</li>
+<li>Develop innovative software and technology.</li>
+<li>Explore cybersecurity and responsible technological research.</li>
+<li>Create original visual and digital experiences.</li>
+<li>Build sustainable business opportunities.</li>
+<li>Establish international collaborations.</li>
+</ul>
+</div>
+
+<div class="about-block">
+<div class="eyebrow">04 — Core Divisions</div>
+<h3>Our Divisions</h3>
+<div class="about-grid">
+
+<div class="division">
+<h4>A. Technology Division</h4>
+<p class="small">Programming, Engineering & Cybersecurity</p>
+<ul>
+<li>Software Engineering</li>
+<li>Web Development</li>
+<li>Application Development</li>
+<li>Game Development</li>
+<li>Cybersecurity Research</li>
+<li>Ethical Hacking</li>
+<li>Penetration Testing with authorization</li>
+<li>Artificial Intelligence</li>
+<li>Blockchain Development</li>
+</ul>
+</div>
+
+<div class="division">
+<h4>B. Creative Division</h4>
+<p class="small">Design, Visual Communication & Digital Media</p>
+<ul>
+<li>Graphic Design</li>
+<li>Visual Identity & Branding</li>
+<li>UI/UX Design</li>
+<li>Digital Photography</li>
+<li>Videography</li>
+<li>Video Editing</li>
+<li>Motion Graphics</li>
+<li>Digital Illustration</li>
+<li>3D Design</li>
+</ul>
+</div>
+
+<div class="division">
+<h4>C. Business Division</h4>
+<p class="small">Marketing, Management & Business Development</p>
+<ul>
+<li>Digital Marketing</li>
+<li>Social Media Management</li>
+<li>Search Engine Optimization</li>
+<li>Market Research</li>
+<li>Advertising</li>
+<li>Business Strategy</li>
+<li>Client Relations</li>
+<li>Business Development</li>
+<li>Product Strategy</li>
+</ul>
+</div>
+
+</div>
+</div>
+
+<div class="about-block">
+<div class="eyebrow">05 — Business Model</div>
+<h3>Business Model</h3>
+<div class="about-grid">
+
+<div class="division">
+<h4>Service-Based Business</h4>
+<ul>
+<li>Digital services for individual clients.</li>
+<li>Business and organizational projects.</li>
+<li>Website and software development.</li>
+<li>Design and marketing services.</li>
+<li>Authorized cybersecurity assessments.</li>
+</ul>
+</div>
+
+<div class="division">
+<h4>Product-Based Business</h4>
+<ul>
+<li>Proprietary software.</li>
+<li>Digital applications.</li>
+<li>Games and interactive products.</li>
+<li>Blockchain experiments.</li>
+<li>Artificial intelligence projects.</li>
+<li>Future KREXO digital products.</li>
+</ul>
+</div>
+
+</div>
+</div>
+
+<div class="about-block">
+<div class="eyebrow">06 — Organizational Structure</div>
+<h3>Organizational Structure</h3>
+<div class="about-grid">
+
+<div class="division">
+<h4>Executive Management</h4>
+<ul>
+<li>Founder</li>
+<li>CEO</li>
+<li>Executive Management</li>
+</ul>
+</div>
+
+<div class="division">
+<h4>Technology Division</h4>
+<ul>
+<li>Head of Technology</li>
+<li>Software Development Team</li>
+<li>Cybersecurity Team</li>
+<li>Research & Development Team</li>
+</ul>
+</div>
+
+<div class="division">
+<h4>Creative Division</h4>
+<ul>
+<li>Head of Creative</li>
+<li>Graphic Design Team</li>
+<li>Photography & Videography Team</li>
+<li>UI/UX & Multimedia Team</li>
+</ul>
+</div>
+
+<div class="division">
+<h4>Business Division</h4>
+<ul>
+<li>Head of Business</li>
+<li>Marketing Team</li>
+<li>Business Development Team</li>
+<li>Client Relations Team</li>
+</ul>
+</div>
+
+</div>
+<div class="notice">
+Positions and personnel will be assigned according to team agreements and actual capabilities.
+</div>
+</div>
+
+<div class="about-block">
+<div class="eyebrow">07 — Working Principles</div>
+<h3>Working Principles</h3>
+<ul>
+<li>Every member has a primary division.</li>
+<li>Members may collaborate across divisions.</li>
+<li>Projects have assigned responsibilities.</li>
+<li>Quality and professionalism are prioritized.</li>
+<li>Client information must be protected.</li>
+<li>Security testing requires authorization.</li>
+<li>Important decisions are documented.</li>
+<li>Every member contributes to the development of KREXO.</li>
+</ul>
+</div>
+
+<div class="about-block">
+<div class="eyebrow">08 — International Identity</div>
+<h3>International Communication</h3>
+<div class="about-grid">
+<div class="division">
+<h4>Bahasa Indonesia</h4>
+<p>Indonesian market.</p>
+</div>
+<div class="division">
+<h4>English</h4>
+<p>International communication.</p>
+</div>
+<div class="division">
+<h4>Simplified Chinese</h4>
+<p>Chinese-speaking market.</p>
+</div>
+</div>
+<div class="notice">
+All official translations should preserve the same meaning and brand identity.
+</div>
+</div>
+
+<div class="about-block">
+<div class="eyebrow">09 — Future Development</div>
+<h3>Future Development</h3>
+<div class="about-grid">
+<div class="division"><h4>Artificial Intelligence</h4></div>
+<div class="division"><h4>Cybersecurity</h4></div>
+<div class="division"><h4>Blockchain</h4></div>
+<div class="division"><h4>Digital Currency Research</h4></div>
+<div class="division"><h4>Software Engineering</h4></div>
+<div class="division"><h4>Digital Infrastructure</h4></div>
+</div>
+<div class="notice">
+These are future development opportunities, not claims of existing products or services.
+</div>
+</div>
+
+<div class="about-block" style="text-align:center">
+<div class="eyebrow">10 — Core Philosophy</div>
+<h2>Kreativitas.<br>Rekayasa.<br>Explorasi.<br>Xperience.<br>Originalitas.</h2>
+<p>“KREXO aims to transform ideas into meaningful digital experiences and technological solutions.”</p>
+<h3 class="green" style="margin-top:20px">KREXO — Innovate Without Limits.</h3>
+</div>
+
+</div>
+</section>
+
+</main>
+
+<footer>
+<div class="container">
+<div class="brand">KRE<span class="brand-x">X</span>O</div>
+<p>Digital Creative · Engineering · Business</p>
+<p class="small">© 2026 KREXO. All rights reserved.</p>
+</div>
+</footer>
+
+<!-- PREVIEW MODAL -->
+<div class="modal" id="mediaModal" onclick="closePreview(event)">
+<div class="modal-content">
+<div class="modal-top">
+<h3 id="previewTitle">Preview</h3>
+<button class="modal-close" onclick="closePreview()">Close ✕</button>
+</div>
+<div id="previewMedia"></div>
+</div>
+</div>
+
+<script>
+
+/* =========================================================
+   CONFIGURATION
+   WhatsApp numbers: country code, no + sign
+========================================================= */
+
+const CONFIG={
+
+contacts:{
+graphic:"6281436119855",
+video:"6281436119855",
+programming:"6281270197965",
+founder:"6281436119855"
+},
+
+catalog:[
+{
+id:"infographic",
+category:"graphic",
+division:"graphic",
+title:"Desain Infografis",
+price:"Rp10K–50K",
+description:"Infographic and information visual design.",
+mediaType:"image",
+media:"https://placehold.co/900x600/111711/B5FF39?text=INFOGRAPHIC+PREVIEW"
+},
+{
+id:"poster",
+category:"graphic",
+division:"graphic",
+title:"Desain Poster",
+price:"Rp10K–50K",
+description:"Poster design for events, promotions and visual communication.",
+mediaType:"image",
+media:"https://placehold.co/900x600/111711/B5FF39?text=POSTER+PREVIEW"
+},
+{
+id:"ppt",
+category:"graphic",
+division:"graphic",
+title:"Desain PPT",
+price:"Rp10K–30K / 2 slides",
+description:"Presentation design with modern visual layouts.",
+mediaType:"image",
+media:"https://placehold.co/900x600/111711/B5FF39?text=PRESENTATION+PREVIEW"
+},
+{
+id:"meme",
+category:"video",
+division:"video",
+title:"Editing Meme",
+price:"Rp10K–30K / min",
+description:"Meme and entertainment video editing.",
+mediaType:"video",
+media:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+},
+{
+id:"vfx",
+category:"video",
+division:"video",
+title:"Editing VFX",
+price:"Rp350K+ / min",
+description:"Visual effects, compositing and cinematic editing.",
+mediaType:"video",
+media:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+},
+{
+id:"daily",
+category:"programming",
+division:"programming",
+title:"Program untuk kebutuhan sehari-hari",
+price:"Rp150K+",
+description:"Software solutions for everyday needs.",
+mediaType:"video",
+media:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+},
+{
+id:"business",
+category:"programming",
+division:"programming",
+title:"Program untuk bisnis",
+price:"Rp300K+",
+description:"Software solutions for business workflows.",
+mediaType:"video",
+media:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+},
+{
+id:"security",
+category:"programming",
+division:"programming",
+title:"Cyber Security",
+price:"Rp180K–10Jt",
+description:"Authorized cybersecurity and defensive security work.",
+mediaType:"video",
+media:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+}
+],
+
+crew:[
+{
+initials:"YT",
+name:"Yuvaka T.",
+role:"Founder & Head of Creative",
+description:"Mengembangkan konsep dan ide kreatif KREXO.",
+skills:"Design • Concept • Editing • Strategy",
+code:"KREXO / 001"
+},
+{
+initials:"LL",
+name:"Leonel L.",
+role:"Head of Technology",
+description:"Mengembangkan Program,AI,dan Cybersecurity KREXO.",
+skills:"Programming • Concept • CyberSecurity",
+code:"KREXO / 002"
+},
+{
+initials:"DLD",
+name:"Derrick L.D.",
+role:"Head of Inovation",
+description:"Mengembangkan Program dan Inovasi baru",
+skills:"Programming • Concept • Editing • Inovate",
+code:"KREXO / 003"
+}
+]
+
+};
+
+/* NAVIGATION */
+
+function showPage(id){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+
+document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
+
+const index={home:0,services:1,catalog:2,order:3,crew:4,about:5}[id];
+
+if(index!==undefined){
+document.querySelectorAll(".nav button")[index].classList.add("active");
+}
+
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* UTILITIES */
+
+function escapeHTML(value){
+return String(value)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#39;");
+}
+
+function categoryName(cat){
+if(cat==="graphic")return "Graphic Design";
+if(cat==="video")return "Video Editing";
+return "Programming";
+}
+
+/* CATALOG */
+
+function renderCatalog(items){
+const grid=document.getElementById("catalogGrid");
+
+grid.innerHTML=items.map(item=>{
+let mediaHTML="";
+
+if(item.mediaType==="image"){
+mediaHTML=`
+<img class="catalog-media"
+src="${escapeHTML(item.media)}"
+alt="${escapeHTML(item.title)} preview"
+loading="lazy">`;
+}else{
+mediaHTML=`
+<video class="catalog-media" muted playsinline preload="metadata" controls>
+<source src="${escapeHTML(item.media)}">
+</video>`;
+}
+
+return `
+<article class="card catalog-card">
+${mediaHTML}
+<div class="catalog-body">
+<span class="tag">${escapeHTML(categoryName(item.category))}</span>
+<h3>${escapeHTML(item.title)}</h3>
+<p>${escapeHTML(item.description)}</p>
+<div class="price">${escapeHTML(item.price)}</div>
+<div class="catalog-buttons">
+<button class="btn btn-secondary" onclick="openPreview('${item.id}')">Preview</button>
+<button class="btn btn-primary" onclick="orderService('${item.id}')">Order Now</button>
+</div>
+</div>
+</article>`;
+}).join("");
+}
+
+function filterCatalog(cat,button){
+document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
+button.classList.add("active");
+
+const items=cat==="all"
+?CONFIG.catalog
+:CONFIG.catalog.filter(i=>i.category===cat);
+
+renderCatalog(items);
+}
+
+function openPreview(id){
+const item=CONFIG.catalog.find(i=>i.id===id);
+if(!item)return;
+
+document.getElementById("previewTitle").textContent=item.title;
+const box=document.getElementById("previewMedia");
+
+if(item.mediaType==="image"){
+box.innerHTML=`<img src="${escapeHTML(item.media)}" alt="${escapeHTML(item.title)}">`;
+}else{
+box.innerHTML=`<video controls autoplay playsinline style="width:100%">
+<source src="${escapeHTML(item.media)}"></video>`;
+}
+
+document.getElementById("mediaModal").classList.add("open");
+}
+
+function closePreview(event){
+if(event && event.target!==document.getElementById("mediaModal"))return;
+document.getElementById("mediaModal").classList.remove("open");
+document.getElementById("previewMedia").innerHTML="";
+}
+
+/* ORDER SERVICE CHECKBOXES */
+
+function renderOrderServices(){
+const grid=document.getElementById("orderServices");
+
+grid.innerHTML=CONFIG.catalog.map(item=>`
+<label class="service-choice" data-id="${item.id}">
+<input type="checkbox" value="${item.id}">
+<span>
+<strong>${escapeHTML(item.title)}</strong>
+<small>${escapeHTML(categoryName(item.category))} · ${escapeHTML(item.price)}</small>
+</span>
+</label>
+`).join("");
+
+grid.querySelectorAll(".service-choice").forEach(choice=>{
+const input=choice.querySelector("input");
+
+input.addEventListener("change",()=>{
+choice.classList.toggle("selected",input.checked);
+
+if(getSelectedServices().length){
+document.getElementById("serviceWarning").style.display="none";
+clearInvalid("field-services");
+}else{
+document.getElementById("serviceWarning").style.display="block";
+}
+});
+});
+}
+
+function getSelectedServices(){
+return Array.from(document.querySelectorAll("#orderServices input:checked"))
+.map(input=>CONFIG.catalog.find(item=>item.id===input.value))
+.filter(Boolean);
+}
+
+function orderService(id){
+showPage("order");
+
+document.querySelectorAll("#orderServices input").forEach(input=>{
+input.checked=false;
+input.closest(".service-choice").classList.remove("selected");
+});
+
+const input=document.querySelector(`#orderServices input[value="${id}"]`);
+
+if(input){
+input.checked=true;
+input.closest(".service-choice").classList.add("selected");
+document.getElementById("serviceWarning").style.display="none";
+clearInvalid("field-services");
+}
+}
+
+/* VALIDATION */
+
+const requiredFields=[
+{id:"customerName",wrapper:"field-name"},
+{id:"customerPhone",wrapper:"field-phone"},
+{id:"orderDetails",wrapper:"field-details"}
+];
+
+function setInvalid(wrapper,message){
+const field=document.getElementById(wrapper);
+field.classList.add("invalid");
+
+if(message){
+const error=field.querySelector(".error-text");
+if(error)error.textContent=message;
+}
+}
+
+function clearInvalid(wrapper){
+document.getElementById(wrapper).classList.remove("invalid");
+}
+
+requiredFields.forEach(item=>{
+const input=document.getElementById(item.id);
+
+input.addEventListener("input",()=>{
+if(input.value.trim()){
+clearInvalid(item.wrapper);
+}
+});
+});
+
+function validateOrder(){
+
+let valid=true;
+let firstInvalid=null;
+
+requiredFields.forEach(item=>{
+const input=document.getElementById(item.id);
+
+if(!input.value.trim()){
+setInvalid(item.wrapper);
+valid=false;
+if(!firstInvalid)firstInvalid=input;
+}else{
+clearInvalid(item.wrapper);
+}
+});
+
+const phone=document.getElementById("customerPhone");
+const phoneValue=phone.value.trim();
+
+if(phoneValue && !/^[+0-9\s()-]{8,20}$/.test(phoneValue)){
+setInvalid("field-phone","Format nomor WhatsApp tidak valid.");
+valid=false;
+if(!firstInvalid)firstInvalid=phone;
+}
+
+if(getSelectedServices().length===0){
+document.getElementById("serviceWarning").style.display="block";
+valid=false;
+if(!firstInvalid)firstInvalid=document.getElementById("orderServices");
+}else{
+document.getElementById("serviceWarning").style.display="none";
+}
+
+if(firstInvalid){
+if(firstInvalid===document.getElementById("orderServices")){
+document.getElementById("field-services").scrollIntoView({
+behavior:"smooth",block:"center"
+});
+}else{
+firstInvalid.scrollIntoView({behavior:"smooth",block:"center"});
+setTimeout(()=>firstInvalid.focus(),400);
+}
+}
+
+return valid;
+}
+
+/* REVIEW */
+
+function reviewOrder(){
+
+if(!validateOrder())return;
+
+const services=getSelectedServices();
+
+document.getElementById("sumName").textContent=
+document.getElementById("customerName").value.trim();
+
+document.getElementById("sumPhone").textContent=
+document.getElementById("customerPhone").value.trim();
+
+document.getElementById("sumServices").innerHTML=
+services.map(item=>`
+<div class="summary-service">
+<strong>${escapeHTML(item.title)}</strong>
+<small>${escapeHTML(categoryName(item.category))} · ${escapeHTML(item.price)}</small>
+</div>
+`).join("");
+
+document.getElementById("sumDetails").textContent=
+document.getElementById("orderDetails").value.trim();
+
+document.getElementById("sumDate").textContent=
+document.getElementById("targetDate").value||"Not specified";
+
+document.getElementById("sumReference").textContent=
+document.getElementById("referenceLink").value.trim()||"None";
+
+document.getElementById("orderFormBox").classList.add("hidden");
+document.getElementById("orderSummary").classList.remove("hidden");
+
+document.getElementById("orderSummary").scrollIntoView({
+behavior:"smooth",block:"start"
+});
+}
+
+function editOrder(){
+document.getElementById("orderSummary").classList.add("hidden");
+document.getElementById("orderFormBox").classList.remove("hidden");
+
+document.getElementById("orderFormBox").scrollIntoView({
+behavior:"smooth",block:"start"
+});
+}
+
+/* WHATSAPP */
+
+function confirmOrder(){
+
+const services=getSelectedServices();
+
+if(!services.length){
+editOrder();
+return;
+}
+
+const divisions=[...new Set(services.map(s=>s.division))];
+
+let destination;
+
+if(divisions.length>1){
+destination=CONFIG.contacts.founder;
+}else{
+destination=CONFIG.contacts[divisions[0]];
+}
+
+if(!destination||destination.includes("REPLACE_")){
+alert("Nomor WhatsApp belum dikonfigurasi. Silakan edit CONFIG.contacts.");
+return;
+}
+
+const serviceList=services.map(s=>
+`- ${s.title} (${categoryName(s.category)} — ${s.price})`
+).join("\n");
+
+const message=`KREXO PROJECT REQUEST
+
+Customer Name: ${document.getElementById("customerName").value.trim()}
+
+WhatsApp: ${document.getElementById("customerPhone").value.trim()}
+
+Services:
+${serviceList}
+
+Order Details:
+${document.getElementById("orderDetails").value.trim()}
+
+Target Date:
+${document.getElementById("targetDate").value||"Not specified"}
+
+Reference:
+${document.getElementById("referenceLink").value.trim()||"None"}
+
+I would like to discuss this project with KREXO.`;
+
+const url="https://wa.me/"+destination+"?text="+encodeURIComponent(message);
+window.open(url,"_blank");
+}
+
+/* CREW BUSINESS CARDS */
+
+function renderCrew(){
+
+const grid=document.getElementById("crewGrid");
+
+grid.innerHTML=CONFIG.crew.map((member,index)=>`
+
+<div class="crew-card">
+
+<div class="crew-top">
+<div class="crew-avatar">${escapeHTML(member.initials)}</div>
+<div class="crew-number">
+MEMBER ${String(index+1).padStart(2,"0")}
+</div>
+</div>
+
+<div class="crew-brand">KREXO CREATIVE STUDIO</div>
+
+<h3 class="crew-name">${escapeHTML(member.name)}</h3>
+
+<div class="crew-position">${escapeHTML(member.role)}</div>
+
+<p class="crew-description">${escapeHTML(member.description)}</p>
+
+<div class="crew-divider"></div>
+
+<div class="crew-footer">
+<div class="crew-skills">${escapeHTML(member.skills)}</div>
+<div class="crew-code">${escapeHTML(member.code)}</div>
+</div>
+
+</div>
+
+`).join("");
+}
+
+/* INITIALIZATION */
+
+renderCatalog(CONFIG.catalog);
+renderOrderServices();
+renderCrew();
+
+</script>
+</body>
+</html>
